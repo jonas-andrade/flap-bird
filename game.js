@@ -1,4 +1,4 @@
-console.log("[jonas-andeade]@ flap bird game 2022");
+console.log("[jonas-andrade] Flap Bird @2022");
 
 //setup
 const sprite = new Image();
@@ -6,6 +6,8 @@ sprite.src = "./sprites.png";
 const canvas = document.querySelector("canvas");
 const contexto = canvas.getContext('2d');
 
+
+// contents 
 const flapBird = {
     //onSprite
     onSpriteX: 0,
@@ -55,7 +57,7 @@ const flapFlor = {
 
 
 }
-const flapGardner = {
+const flapGarden = {
     //onSprite
     onSpriteX: 390,
     onSpriteY: 3,
@@ -90,13 +92,10 @@ const flapGardner = {
 
 function animate(){
     requestAnimationFrame( animate )
-   
-   flapGardner.drawNow();
+
+   flapGarden.drawNow();
    flapFlor.drawNow();
    flapBird.drawNow();
-
-   
-
 }
 
 animate();
