@@ -94,17 +94,75 @@ const flapGarden = {
 
 
 }
+const screenStart = {
+    //onSprite
+    onSpriteX: 131,
+    onSpriteY: 0,
+    onSpriteWidth: 188,
+    onSpriteHeight: 151,
+    //onCanvas
+    onCanvasX: (canvas.width / 2 ) - 188 / 2,
+    onCancasY: 150,
+    drawNow(){
+        contexto.drawImage(
+            sprite,
+            this.onSpriteX, this.onSpriteY,
+            this.onSpriteWidth, this.onSpriteHeight,
+            this.onCanvasX ,this.onCancasY - flapFlor.onSpriteHeight,
+            this.onSpriteWidth, this.onSpriteHeight,
+        )
+    }
 
+
+}
+
+//telas
+let screenActive = {}
+function alterScreen(sc){
+    screenActive = sc;
+}
+const screen = {
+    INICIO: {
+        drawNow(){
+            flapGarden.drawNow();
+            flapFlor.drawNow();
+            flapBird.drawNow();
+            screenStart.drawNow();
+        },
+        update(){
+            
+        }
+
+    },
+    PLAY: {
+        drawNow(){
+            flapGarden.drawNow();
+            flapFlor.drawNow();
+            flapBird.drawNow();
+
+        },
+        update(){
+            flapBird.update();
+            
+        }
+
+    }
+
+}
 
 
 function animate(){
-   flapBird.update();
-   flapGarden.drawNow();
-   flapFlor.drawNow();
-   flapBird.drawNow();
-   
-   
+        screenActive.update();
+        screenActive.drawNow(); 
+
    requestAnimationFrame( animate )
 }
 
+
+window.addEventListener('click',()=>{
+    alterScreen(screen.PLAY);
+});
+
+
+alterScreen(screen.INICIO);
 animate();
