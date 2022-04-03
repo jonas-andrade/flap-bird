@@ -5,6 +5,9 @@
     sprite.src = "./sprites.png";
     const canvas = document.querySelector("canvas");
     const contexto = canvas.getContext('2d');
+    const wav = new Audio();
+    wav.src = './audios/efeitos_hit.wav';
+
 
 
 
@@ -43,7 +46,8 @@ function restFlappy(){
         
         update(){
             if(collisionFlappy(flapBird,flapFloor)){
-                alterScreen(screen.INICIO)
+                setTimeout(()=>alterScreen(screen.INICIO),350)
+                wav.play()
                 return;
             }
             flapBird.velocity += flapBird.acceleration
