@@ -17,6 +17,9 @@ const flapBird = {
     //onCanvas
     onCanvasX: 10,
     onCancasY: 50,
+    update(){
+        flapBird.onCancasY = flapBird.onCancasY + 1
+    },
     drawNow(){
         contexto.drawImage(
             sprite,
@@ -91,11 +94,13 @@ const flapGarden = {
 
 
 function animate(){
-    requestAnimationFrame( animate )
-
+   flapBird.update();
    flapGarden.drawNow();
    flapFlor.drawNow();
    flapBird.drawNow();
+   
+   
+   requestAnimationFrame( animate )
 }
 
 animate();
