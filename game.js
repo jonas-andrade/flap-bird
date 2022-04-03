@@ -14,11 +14,15 @@ const flapBird = {
     onSpriteY: 0,
     onSpriteWidth: 34,
     onSpriteHeight: 24,
-    //onCanvas
+    //onCanvas     velocidade ( v = v° + a.t )
     onCanvasX: 10,
     onCancasY: 50,
+    acceleration: 0.25,
+    velocity: 0,
+    
     update(){
-        flapBird.onCancasY = flapBird.onCancasY + 1
+        flapBird.velocity += flapBird.acceleration
+        flapBird.onCancasY += flapBird.velocity
     },
     drawNow(){
         contexto.drawImage(
