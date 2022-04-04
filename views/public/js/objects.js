@@ -1,3 +1,4 @@
+import setup from "./setup.js";
 export default {
 
     createFlappy: ()=>{
@@ -13,12 +14,10 @@ export default {
             acceleration: 0.25,
             velocity: 0,
             salt: 4.6,
-            up(){
-                
-                flapBird.velocity = - flapBird.salt;
-                
-            },
-            
+
+
+
+            up(){ flapBird.velocity = - flapBird.salt},
             update(){
                 // if(collisionFlappy(flapBird,flapFloor)){
                 //     setTimeout(()=>alterScreen(screen.INICIO),250)
@@ -29,9 +28,10 @@ export default {
                 // flapBird.onCanvasY += flapBird.velocity
             
             },
-            drawNow(contexto){
-                contexto.drawImage(
-                    sprite,
+            drawNow(){
+                
+                setup.canvas.drawImage(
+                    setup.sprite,
                     this.onSpriteX, this.onSpriteY,
                     this.onSpriteWidth, this.onSpriteHeight,
                     this.onCanvasX ,this.onCanvasY,
@@ -52,17 +52,17 @@ export default {
             onSpriteHeight: 112,
             //onCanvas
             onCanvasX: 0,
-            onCanvasY: canvas.height - 112,
+            onCanvasY: document.querySelector("canvas").height - 112,
             drawNow(){
-                contexto.drawImage(
-                    sprite,
+                setup.canvas.drawImage(
+                    setup.sprite,
                     this.onSpriteX, this.onSpriteY,
                     this.onSpriteWidth, this.onSpriteHeight,
                     this.onCanvasX ,this.onCanvasY,
                     this.onSpriteWidth, this.onSpriteHeight,
                 ),
-                contexto.drawImage(
-                    sprite,
+                setup.canvas.drawImage(
+                    setup.sprite,
                     this.onSpriteX, this.onSpriteY,
                     this.onSpriteWidth, this.onSpriteHeight,
                     (this.onCanvasX + this.onSpriteWidth),this.onCanvasY,
@@ -84,22 +84,23 @@ export default {
             onSpriteHeight: 200,
             //onCanvas
             onCanvasX: 0,
-            onCanvasY: canvas.height - flapFloor.onSpriteHeight,
+            onCanvasY: document.querySelector("canvas").height - 200,
             drawNow(){
-                contexto.fillStyle = '#70c5ce';
-                contexto.fillRect(0,0,canvas.width,canvas.height)
-                contexto.drawImage(
-                    sprite,
+                // setup.canvas.fillStyle = '#70c5ce';
+                // setup.canvas.fillRect(0,0,setup.canvas.width,setup.canvas.height)
+                
+                setup.canvas.drawImage(
+                    setup.sprite,
                     this.onSpriteX, this.onSpriteY,
                     this.onSpriteWidth, this.onSpriteHeight,
-                    this.onCanvasX ,this.onCanvasY - flapFloor.onSpriteHeight,
+                    this.onCanvasX ,this.onCanvasY - 112,
                     this.onSpriteWidth, this.onSpriteHeight,
                 ),
-                contexto.drawImage(
-                    sprite,
+                setup.canvas.drawImage(
+                    setup.sprite,
                     this.onSpriteX, this.onSpriteY,
                     this.onSpriteWidth, this.onSpriteHeight,
-                    (this.onCanvasX + this.onSpriteWidth),this.onCanvasY - flapFloor.onSpriteHeight,
+                    (this.onCanvasX + this.onSpriteWidth),this.onCanvasY - 112,
                     this.onSpriteWidth, this.onSpriteHeight,
                 )
             }
@@ -114,14 +115,15 @@ export default {
             onSpriteWidth: 188,
             onSpriteHeight: 151,
             //onCanvas
-            onCanvasX: (canvas.width / 2 ) - 188 / 2,
+            onCanvasX: (document.querySelector("canvas").width / 2 ) - 188 / 2,
             onCanvasY: 150,
             drawNow(){
-                contexto.drawImage(
-                    sprite,
+                
+                setup.canvas.drawImage(
+                    setup.sprite,
                     this.onSpriteX, this.onSpriteY,
                     this.onSpriteWidth, this.onSpriteHeight,
-                    this.onCanvasX ,this.onCanvasY - flapFloor.onSpriteHeight,
+                    this.onCanvasX ,this.onCanvasY - 112,
                     this.onSpriteWidth, this.onSpriteHeight,
                 )
             }
