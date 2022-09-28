@@ -1,10 +1,10 @@
 import objetos from "./objetos.js";
 
-import initial from "./init.js";
 
 export default {
     INICIO: {
         desenha(){
+            objetos.flappy.y = 50;
             objetos.background.desenha();
             objetos.ground.desenha();
             objetos.flappy.desenha();
@@ -15,14 +15,17 @@ export default {
     },
     PLAY: {
         desenha(){
-            // objetos.flappy.update();
-
+            objetos.flappy.update();
             objetos.background.desenha();
             objetos.ground.desenha();
             objetos.flappy.desenha();
 
            
         //  objetos.start.desenha();
+        },
+        click(){ 
+
+            objetos.flappy.pulo();
         }
     }
 

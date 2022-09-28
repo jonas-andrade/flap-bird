@@ -6,7 +6,7 @@ function alterTela(newtela){telaAtual = newtela}
 function animate(){
    
     telaAtual.desenha();
-    
+   
     requestAnimationFrame(animate);
 }
 window.addEventListener('click',()=>{
@@ -15,6 +15,7 @@ window.addEventListener('click',()=>{
         console.log("clicou")
     }
 })
+ 
 
 alterTela(screens.INICIO);
 animate();

@@ -1,6 +1,5 @@
 import initial from "./init.js";
-
-
+import screens from "./screens.js";
 export default {
 
      background: {
@@ -8,8 +7,7 @@ export default {
         largura: 276,altura: 205,
         x: 0 ,y: 165,
     
-        desenha(){
-            
+        desenha(){  
             initial.context().fillStyle = '#70c5ce';
             initial.context().fillRect(0 , 0 , initial.canvas().width, initial.canvas().height);
             initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,this.x,this.y,this.largura,this.altura);
@@ -17,29 +15,41 @@ export default {
     
         },   
     },
+
      flappy: {
         onSpriteX: 0,onSpriteY: 0,
         largura: 36,altura: 26,
-        x: 20,y: 40,
+        x: 20,y: 40, velocidade: 1, gravidade: 0.25,pulo_size: 4.6,
         
-    
-        desenha(){
-            initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,this.x,this.y,this.largura,this.altura);
-    
+        colidio(){
+            if(this.y >= 343.75){   
+                initial.audio().play();this.velocidade= 0;this.gravidade=0;
+                screens.INICIO.desenha();
+                start().desenha();      
+            } 
+
+
         },
-        update(){
-            // this.y += 3;
-            // console.log(this.y)
-            // if( this.y == ((initial.canvas().height - 113))-25){
-            //     this.y -= 1
-            // }
-        }
-    
+        update(){ 
+            this.colidio();
+
+             this.velocidade += this.gravidade;
+             
+             this.y +=this.velocidade;
+
+            },
+        pulo(){ 
+            console.log("pulou")
+             this.velocidade =  - this.pulo_size
+        },
+        desenha(){  initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,this.x,this.y,this.largura,this.altura);}
+        
     },
+
      ground: {
         onSpriteX: 0,onSpriteY: 610,
         largura: 225,altura: 113,
-        x: 0,y: initial.canvas().height - 113,
+        x: 0,y: initial.canvas().height - 110,
     
         desenha(){
             initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,this.x,this.y,this.largura,this.altura);
