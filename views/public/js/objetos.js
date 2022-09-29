@@ -48,14 +48,25 @@ export default {
 
      ground: {
         onSpriteX: 0,onSpriteY: 610,
-        largura: 225,altura: 113,
+        largura: 220,altura: 113,
         x: 0,y: initial.canvas().height - 110,
     
         desenha(){
             initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,this.x,this.y,this.largura,this.altura);
-            initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,224,this.y,this.largura,this.altura);
+            initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,(this.x+this.largura),this.y,this.largura,this.altura);
     
-        }
+        },
+        atualiza() {
+            const velocidade_do_movimento = 1;
+            const movimento = this.x - velocidade_do_movimento;
+            const ponto_de_repeticao = this.largura /2;
+
+
+            this.x =( movimento % ponto_de_repeticao);
+          }
+        
+         
+        
     },
      start: {
         onSpriteX: 133,onSpriteY: 0,
