@@ -9,6 +9,7 @@ export default {
             objetos.ground.desenha();
             objetos.flappy.desenha();
             objetos.start.desenha();
+ 
             
         },
         click(){ return true}
@@ -17,7 +18,7 @@ export default {
         desenha(){
             objetos.flappy.update();
             objetos.background.desenha();
-            objetos.ground.desenha();
+            objetos.ground.desenha();objetos.ground.atualiza();
             objetos.flappy.desenha();
 
            
