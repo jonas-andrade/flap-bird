@@ -19,7 +19,7 @@ export default {
      flappy: {
         onSpriteX: 0,onSpriteY: 0,
         largura: 36,altura: 26,
-        x: 20,y: 40, velocidade: 1, gravidade: 0.25,pulo_size: 4.6,
+        x: 20,y: 40, velocidade: 1, gravidade: 0.25,pulo_size: 4.6,frameAtual: 0,frame: 0,
         
         colidio(){
             if(this.y >= 343.75){   
@@ -27,22 +27,38 @@ export default {
                 screens.INICIO.desenha();
                 start().desenha();      
             } 
-
-
         },
         update(){ 
             this.colidio();
-
-             this.velocidade += this.gravidade;
-             
-             this.y +=this.velocidade;
+            this.velocidade += this.gravidade; this.y +=this.velocidade;
 
             },
         pulo(){ 
             console.log("pulou")
              this.velocidade =  - this.pulo_size
         },
-        desenha(){  initial.context().drawImage(initial.sprites() , this.onSpriteX,this.onSpriteY,this.largura,this.altura,this.x,this.y,this.largura,this.altura);}
+        movimentos: [
+            {ox: 0, oy: 0},
+            {ox: 0, oy: 27},
+            {ox: 0, oy: 52},
+            {ox: 0, oy: 27},
+
+           
+        ],
+        changeFrame(){
+            const intervalo_frame = 10;
+            const passou_intevalo = this.frame % intervalo_frame === 0; 
+            if(passou_intevalo){
+                const baseIncremento = 1;
+            const incremento = baseIncremento + this.frameAtual;
+            const baseRepeticao = this.movimentos.length;
+            this.frameAtual = incremento % baseRepeticao;
+            }
+           
+        },
+        desenha(){
+            this.frame = this.frame +1;  
+            this.changeFrame(); const {ox, oy} =  this.movimentos[this.frameAtual];initial.context().drawImage(initial.sprites() , ox,oy,this.largura,this.altura,this.x,this.y,this.largura,this.altura);}
         
     },
 
@@ -68,6 +84,7 @@ export default {
          
         
     },
+
      start: {
         onSpriteX: 133,onSpriteY: 0,
         largura: 177,altura: 152,
